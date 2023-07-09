@@ -1,0 +1,10 @@
+.header__auth-text {
+    font-family: 'Inter';
+    font-size: 18px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.header__auth-text:hover {
+    opacity: 0.6;
+}

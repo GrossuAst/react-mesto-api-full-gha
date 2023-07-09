@@ -1,0 +1,10 @@
+.card__likes-section {
+    color: #000000;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3px;
+}

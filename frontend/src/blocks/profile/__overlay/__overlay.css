@@ -1,0 +1,15 @@
+/* .profile__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    width: 120px;
+    height: 121px;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.profile__overlay:hover {
+    cursor: pointer;
+    opacity: 0.8;
+} */

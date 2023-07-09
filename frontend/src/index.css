@@ -1,0 +1,89 @@
+/* нормалайз, шрифты */
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts/fonts.css);
+
+/* page + content */
+@import url(./blocks/wrapper/wrapper.css);
+@import url(./blocks/content/content.css);
+
+/* шапка */
+@import url(./blocks/header/header.css);
+@import url(./blocks/header/__logo/header__logo.css);
+@import url(./blocks/header/__nav/header__nav.css);
+@import url(./blocks/header/__auth-text/header__auth-text.css);
+
+/* class main */
+@import url(./blocks/main/main.css);
+
+/* секция профиль */
+@import url(./blocks/profile/profile.css);
+@import url(./blocks/profile/__redact/profile__redact.css);
+@import url(./blocks/profile/__avatar/profile__avatar.css);
+@import url(./blocks/profile/__avatar-overlay/profileprofile__avatar-overlay.css);
+
+@import url(./blocks/profile/__overlay/__overlay.css);
+
+@import url(./blocks/profile/__name/profile__name.css);
+@import url(./blocks/profile/__description/profile__description.css);
+@import url(./blocks/profile/__edit-button/profile__edit-button.css);
+@import url(./blocks/profile/__add-button/profile__add-button.css);
+
+/* секция элементы */
+@import url(./blocks/elements/elements.css);
+@import url(./blocks/card/card.css);
+@import url(./blocks/card/__delete-button/card__delete-button.css);
+@import url(./blocks/card/__photo/card__photo.css);
+@import url(./blocks/card/__description/card__description.css);
+@import url(./blocks/card/__title/card__title.css);
+/* лайк карточек */
+@import url(./blocks/card/__likes-section/card__likes-section.css);
+@import url(./blocks/card/__like/card__like.css);
+@import url(./blocks/card/__likes-counter/card__likes-counter.css);
+@import url(./blocks/card/__like/_active/card__like_active.css);
+
+/* подвал */
+@import url(./blocks/footer/footer.css);
+@import url(./blocks/footer/__author/footer__author.css);
+
+/* попап */
+@import url(./blocks/popup/popup.css);
+@import url(./blocks/popup/_opened/popup_opened.css);
+@import url(./blocks/popup/__container/popup__container.css);
+@import url(./blocks/popup/_type/_tooltip/popup_type_tooltip.css);
+
+@import url(./blocks/popup/__container/_type/popup__container_type_delete-card.css);
+@import url(./blocks/popup/__submit-button/_type/popup__submit-button_type_delete-card.css);
+
+@import url(./blocks/popup/__close-icon/popup__close-icon.css);
+@import url(./blocks/popup/__form/popup__form.css);
+@import url(./blocks/popup/__title/popup__title.css);
+@import url(./blocks/popup/__inputs/popup__inputs.css);
+@import url(./blocks/popup/__input/popup__input.css);
+@import url(./blocks/popup/__input/_type/popup__input_type_name.css);
+@import url(./blocks/popup/__input/_type/popup_input_type_profession.css);
+/* кнопка + кнопка выключенная */
+@import url(./blocks/popup/__submit-button/popup__submit-button.css);
+@import url(./blocks/popup/__submit-button/_disabled/popup__submit-button_disabled.css);
+@import url(./blocks/popup/__image/popup__image.css);
+
+/* инпутп с ошбкой */
+@import url(./blocks/popup/__input/_type/popup__input_type_error.css);
+
+/* спаны с ошибкой в попапе */
+@import url(./blocks/popup/__error/popup__error.css);
+@import url(./blocks/popup/__error/_visible/popup__error_visible.css);
+
+/* попап фуллскрин фото */
+@import url(./blocks/popup/_type/popup_type_fullscreen.css);
+@import url(./blocks/popup/__fullscreen-container/popup__fullscreen-container.css);
+@import url(./blocks/popup/__fullscreen-image/popup__fullscreen-image.css);
+@import url(./blocks/popup/__fullscreen-title/popup__fullscreen-title.css);
+
+/* стили роутов авторизации */
+@import url(./blocks/auth-form/auth-form.css);
+@import url(./blocks/auth-form/input-place/auth-form__input-place.css);
+@import url(./blocks/auth-form/__input/auth-form__input.css);
+@import url(./blocks/auth-form/__title/auth-form__title.css);
+@import url(./blocks/auth-form/__submit-button/auth-form__submit-button.css);
+@import url(./blocks/auth-form/__link/auth-form__link.css);
+@import url(./blocks/auth-form/__text/auth-form__text.css);

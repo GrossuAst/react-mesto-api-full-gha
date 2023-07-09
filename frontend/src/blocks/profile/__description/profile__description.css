@@ -1,0 +1,22 @@
+.profile__description {
+    grid-area: descripton;
+    display: inline-block;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 37px;
+    margin: 0 0 5px 30px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@media screen and (max-width:770px) {
+    .profile__description {
+        max-width: 250px;
+        grid-area: descripton-mob;
+        font-size: 14px;
+        line-height: 17px;
+        margin: auto;
+        margin-top: 6px;
+    }
+}
