@@ -12,7 +12,7 @@ function Main({cards, onEditProfile, onAddPlace, onEditAvatar, onCardClick, onDe
     const navigate = useNavigate();
 
     function signOut() {
-        localStorage.removeItem('jwt');
+        // localStorage.removeItem('jwt');
         setLoggedIn(false);
         navigate('/', {replace: true});
         handleEmailClear(null);
@@ -32,13 +32,13 @@ function Main({cards, onEditProfile, onAddPlace, onEditAvatar, onCardClick, onDe
                         <button className="profile__avatar-overlay"
                             onClick={onEditAvatar}
                             style={{ 
-                                backgroundImage: `url(${currentUser.avatar})`,
+                                backgroundImage: `url(${currentUser.data.avatar})`,
                                 backgroundSize: 'cover'
                         }}
                         >
                         </button>
-                        <h1 className="profile__name">{currentUser.name}</h1>
-                        <p className="profile__description">{currentUser.about}</p>
+                        <h1 className="profile__name">{currentUser.data.name}</h1>
+                        <p className="profile__description">{currentUser.data.about}</p>
                         <button type="button" aria-label="кнопка открытия попапа редактирования профиля" 
                             className="profile__edit-button"
                             onClick={onEditProfile}

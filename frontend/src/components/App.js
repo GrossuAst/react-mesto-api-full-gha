@@ -51,7 +51,7 @@ function App() {
     Promise.all([api.getInfoAboutUser(), api.getInitialCards()])
     .then(([userInfo, cards]) => {
       setCurrentUser(userInfo);
-      setCardsArray(cards);
+      setCardsArray(cards.reverse());
     })
     .catch((err) => {
       console.log(`ошибка ${err}`);
@@ -87,7 +87,7 @@ function App() {
   function handleAddPlaceSubmit(card) {
     api.sendCard(card)
     .then((res) => {
-      setCardsArray([res, ...cards]);
+      setCardsArray([res.data, ...cards]);  // остановился тут. После создания карточки, серв возвращает объект карточки а не весь массив
       closeAllPopups();
     })
     .catch((err) => {
@@ -158,10 +158,12 @@ function App() {
 
   // если в локальном хранилище валидный токен => залогинить пользователя и отправить в мейн страницу
   function checkToken() {
-    const jwt = localStorage.getItem('jwt');
-    auth.tokenValidate(jwt)
+    // const jwt = localStorage.getItem('jwt');
+    // неправильно назвал функцию, функция возвращает информацию о пользователе
+    auth.tokenValidate()
     .then((data) => {
       if(data) {
+        setCurrentUser(data);
         setLoggedIn(true);
         navigate('/', {replace: true});
         handleEmailChange(data.data.email);
@@ -170,10 +172,15 @@ function App() {
         navigate('/sign-in', {replace: true})
       }
     })
+    .catch((err) => {
+      console.log(err);
+      setLoggedIn(false);
+    })
   }
 
   React.useEffect(() => {
     checkToken();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleLoggedIn(res) {
@@ -187,8 +194,6 @@ function App() {
   function handleEmailClear() {
     setUserEmail(null);
   }
-
-  // console.log(userEmail);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

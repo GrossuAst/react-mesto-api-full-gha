@@ -8,6 +8,14 @@ const cookieParser = require('cookie-parser');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { errors } = require('celebrate');
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+const cors = require('cors');
+
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true,
+}));
+
 // импорт логгеров
 // eslint-disable-next-line no-unused-vars
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -23,7 +31,7 @@ const cardRoutes = require('./routes/cards');
 const auth = require('./middlewares/auth');
 const errorsHandler = require('./middlewares/errorsHandler');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 4000 } = process.env;
 
 mongoose.connect('mongodb://127.0.0.1/mestodb', {
   useNewUrlParser: true,

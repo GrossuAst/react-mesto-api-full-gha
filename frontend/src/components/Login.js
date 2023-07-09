@@ -31,7 +31,7 @@ function Login({onLoggedIn, handleEmailChange, onTooltipOpen}) {
             handleEmailChange(formValue.email);
             // console.log(formValue.email);
             // console.log(res);
-            localStorage.setItem('jwt', res.token);
+            // localStorage.setItem('jwt', res.token);
         // auth.tokenValidate(res.token)
         // .then((res) => {
         //     handleEmailChange(res.data.email);

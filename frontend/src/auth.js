@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'http://localhost:4000';
 
 export function register(password, email) {
     return fetch(`${BASE_URL}/signup`, {
@@ -7,6 +7,7 @@ export function register(password, email) {
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
+        credentials: 'include',
         body: JSON.stringify({ password, email })
     })
     .then((res) => { 
@@ -24,6 +25,7 @@ export function authorize(password, email) {
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
+        credentials: 'include',
         body: JSON.stringify({password, email})
     })
     .then((res) => {
@@ -35,13 +37,15 @@ export function authorize(password, email) {
     })
 }
 
-export function tokenValidate(jwt) {
+// неправильно назвал функцию, функция должна вернуть информацию о пользователе
+export function tokenValidate() {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
-            "Authorization" : `Bearer ${jwt}`
-        }
+            // "Authorization" : `Bearer ${jwt}`
+        },
+        credentials: 'include'
     })
     .then((res) => {
         if(res.ok) {

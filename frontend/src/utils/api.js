@@ -17,7 +17,8 @@ export class Api {
     getInfoAboutUser() {
         return fetch(`${this._url}/users/me`, {
             method: 'GET',
-            headers: this._headers
+            credentials: 'include',
+            headers: this._headers,      
         })
             .then(this._checkResponse) 
     };
@@ -26,6 +27,7 @@ export class Api {
     getInitialCards() {
         return fetch(`${this._url}/cards`, {
             method: 'GET',
+            credentials: 'include',
             headers: this._headers 
         })
             .then(this._checkResponse)
@@ -35,6 +37,7 @@ export class Api {
     editProfileInfo(userInfo) {
         return fetch(`${this._url}/users/me`, {
             method: 'PATCH',
+            credentials: 'include',
             headers: this._headers,
             body: JSON.stringify({
             name: userInfo.name,
@@ -48,6 +51,7 @@ export class Api {
     editAvatar(avatarUrl) {
         return fetch(`${this._url}/users/me/avatar`, {
             method: 'PATCH',
+            credentials: 'include',
             headers: this._headers,
             body: JSON.stringify({
             avatar: avatarUrl
@@ -60,6 +64,7 @@ export class Api {
     sendCard(object) {
         return fetch(`${this._url}/cards`, {
             method: 'POST',
+            credentials: 'include',
             headers: this._headers,
             body: JSON.stringify({
                 name: object.name, 
@@ -73,15 +78,17 @@ export class Api {
     deleteCard(cardId) {
         return fetch(`${this._url}/cards/${cardId}`, {
             method: 'DELETE',
+            credentials: 'include',
             headers: this._headers
         })
-            .then(this._checkResponse)
+        .then(this._checkResponse)
     }
     
     // поставить лайк
     putLike(cardId) {
         return fetch(`${this._url}/cards/${cardId}/likes`, {
             method: 'PUT',
+            credentials: 'include',
             headers: this._headers
         })
         .then(this._checkResponse)
@@ -91,6 +98,7 @@ export class Api {
     deleteLike(cardId) {
         return fetch(`${this._url}/cards/${cardId}/likes`, {
             method: 'DELETE',
+            credentials: 'include',
             headers: this._headers
         })
         .then(this._checkResponse)
@@ -100,6 +108,7 @@ export class Api {
     changeLikeCardStatus(cardId, isLiked) {
         return fetch(`${this._url}/cards/${cardId}/likes`, {
             method: isLiked ? 'DELETE' : 'PUT',
+            credentials: 'include',
             headers: this._headers
         })
         .then(this._checkResponse)
