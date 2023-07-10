@@ -59,6 +59,20 @@ function App() {
     return;
   }, [isLoggedIn]);
 
+  // функция логаута, делает запрос на удаление куки
+  function clearCookieData() {
+    auth.logout()
+      .then((res) => {
+        // console.log(res);
+        setLoggedIn(false);
+        navigate('/sign-in', { replace: true });
+        handleEmailClear(null);
+      })
+      .catch((err) => {
+        console.log(`ошибка ${err}`);
+      })
+  }
+
   //обновление данных профиля 
   function handleUpdateUser(currentUser) {
     api.editProfileInfo(currentUser)
@@ -87,7 +101,7 @@ function App() {
   function handleAddPlaceSubmit(card) {
     api.sendCard(card)
     .then((res) => {
-      setCardsArray([res.data, ...cards]);  // остановился тут. После создания карточки, серв возвращает объект карточки а не весь массив
+      setCardsArray([res.data, ...cards]);
       closeAllPopups();
     })
     .catch((err) => {
@@ -183,7 +197,7 @@ function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function handleLoggedIn(res) {
+  function handleLoggedIn() {
     setLoggedIn(true);
   }
 
@@ -217,7 +231,8 @@ function App() {
                 setLoggedIn={setLoggedIn}
                 handleEmailClear={handleEmailClear}
                 userEmail={userEmail}
-              />} 
+                clearCookieData={clearCookieData}
+              />}
               />} 
             />         
 
@@ -225,7 +240,13 @@ function App() {
             <Route path="/sign-up" element={<Register onTooltipOpen={setInfoTooltipVisible} setRegStatus={setRegStatus} />}/>
 
             {/* для авторизации */}
-            <Route path="/sign-in" element={<Login onLoggedIn={handleLoggedIn} handleEmailChange={handleEmailChange} onTooltipOpen={setInfoTooltipVisible} />} />
+            <Route path="/sign-in" element={<Login 
+            setLoggedIn={setLoggedIn} 
+            handleEmailChange={handleEmailChange} 
+            onTooltipOpen={setInfoTooltipVisible}
+            checkToken={checkToken}
+            setCurrentUser={setCurrentUser}
+            />} />
 
             {/* мейн блок. LoggedIn === true? тода отрисовать мейн, иначе - отправить на /sign-in */}
             <Route path="/" element={isLoggedIn ? 
@@ -237,7 +258,8 @@ function App() {
                 onCardClick={handleCardClick}
                 // onDeleteButtonClick={handleDeleteCardClick}
                 onCardLike={handleCardLike}
-                onCardDelete={handleCardDelete}             
+                onCardDelete={handleCardDelete}
+                // onClearCookie={clearCookieData}
               /> 
             : <Navigate to='/sign-in' replace />} />
 

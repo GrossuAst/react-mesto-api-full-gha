@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import Header from "./Header";
 import * as auth from '../auth.js';
 
-function Login({onLoggedIn, handleEmailChange, onTooltipOpen}) {
+function Login({setLoggedIn, handleEmailChange, onTooltipOpen, checkToken, setCurrentUser}) {
 
     const navigate = useNavigate();
 
@@ -21,27 +21,67 @@ function Login({onLoggedIn, handleEmailChange, onTooltipOpen}) {
         })
     }
 
-    function handleSubmit(evt) {
+    // function handleSubmit(evt) {
+    //     evt.preventDefault();
+    //     auth.authorize(formValue.password, formValue.email)
+    //     .then((res) => {
+    //         setFormValue({password: '', email: ''});
+    //         onLoggedIn();
+    //         checkToken();
+    //         // setCurrenUser(res);
+    //         navigate('/', {replace: true});
+    //         handleEmailChange(formValue.email);
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //         onTooltipOpen(true);
+    //     })
+    // }
+
+    // function handleSubmit(evt) {
+    //     evt.preventDefault();
+    //     Promise.all([auth.authorize(formValue.password, formValue.email), auth.tokenValidate()])
+    //     .then((token, res) => {
+    //         setFormValue({password: '', email: ''});
+    //         setCurrentUser(res);
+    //         setLoggedIn(true);
+    //         navigate('/', {replace: true});
+    //         handleEmailChange(formValue.email);
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //         onTooltipOpen(true);
+    //     })
+    // }
+
+    // async function handleSubmit(evt) {
+    //     evt.preventDefault();
+    //     await auth.authorize(formValue.password, formValue.email)
+    //         .then((res) => { 
+    //             setFormValue({password: '', email: ''});
+    //             setLoggedIn(true);
+    //             handleEmailChange(formValue.email);
+    //             navigate('/', {replace: true});
+    //         });
+    //     const userData = await auth.tokenValidate()
+    //         .then((res) => { setCurrentUser(userData) })
+    // }
+
+    async function handleSubmit(evt) {
         evt.preventDefault();
-        auth.authorize(formValue.password, formValue.email)
-        .then((res) => {
+        try {
+            await auth.authorize(formValue.password, formValue.email);
+            const userData = await auth.tokenValidate();
+            setCurrentUser(userData);
             setFormValue({password: '', email: ''});
-            onLoggedIn(res);
-            navigate('/');
+            setLoggedIn(true);
             handleEmailChange(formValue.email);
-            // console.log(formValue.email);
-            // console.log(res);
-            // localStorage.setItem('jwt', res.token);
-        // auth.tokenValidate(res.token)
-        // .then((res) => {
-        //     handleEmailChange(res.data.email);
-        // })
-        })
-        .catch((err) => {
-            // console.log(err);
+            navigate('/', {replace: true});
+        } catch(err) {
+            console.log(err);
             onTooltipOpen(true);
-        })
-    }
+        }
+    };
 
     return(
         <>

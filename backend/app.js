@@ -24,6 +24,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const nonExistenRoutes = require('./routes/nonExistenRoutes');
 const registerRouter = require('./routes/register');
 const loginRouter = require('./routes/login');
+const logoutRouter = require('./routes/logout');
 const userRoutes = require('./routes/users');
 const cardRoutes = require('./routes/cards');
 
@@ -48,6 +49,7 @@ app.use(loginRouter);
 app.use(auth);
 app.use(userRoutes);
 app.use(cardRoutes);
+app.use(logoutRouter);
 app.use(nonExistenRoutes);
 
 // логгер ошибок

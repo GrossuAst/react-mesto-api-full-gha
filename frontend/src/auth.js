@@ -54,3 +54,21 @@ export function tokenValidate() {
         return Promise.reject(`Ошибка ${res.status}`);
     })
 }
+
+// запрос логаута
+export function logout() {
+    return fetch(`${BASE_URL}/logout`, {
+        method: 'GET',
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        credentials: 'include'
+    })
+    .then((res) => {
+        console.log(res);
+    })
+    .catch((err) => {
+        console.log(err.status);
+    })
+}

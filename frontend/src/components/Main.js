@@ -4,26 +4,38 @@ import { Link, useNavigate } from 'react-router-dom';
 import Card from './Card';
 import Header from './Header';
 
-function Main({cards, onEditProfile, onAddPlace, onEditAvatar, onCardClick, onDeleteButtonClick, onCardLike, onCardDelete, setLoggedIn, handleEmailClear, userEmail}) {
+function Main({
+    cards, 
+    onEditProfile, 
+    onAddPlace, 
+    onEditAvatar, 
+    onCardClick, 
+    onDeleteButtonClick, 
+    onCardLike, 
+    onCardDelete, 
+    setLoggedIn, 
+    handleEmailClear, 
+    userEmail, 
+    clearCookieData }) {
 
     // подписка на контекст
     const currentUser = React.useContext(CurrentUserContext);
 
     const navigate = useNavigate();
 
-    function signOut() {
-        // localStorage.removeItem('jwt');
-        setLoggedIn(false);
-        navigate('/', {replace: true});
-        handleEmailClear(null);
-    }
+    // function signOut() {
+    //     setLoggedIn(false);
+    //     navigate('/', { replace: true });
+    //     handleEmailClear(null);
+    //     clearCookieData();
+    // }
     
     return (
         <>
-            <Header>
-                <div className='header__nav'>
+            <Header clearCookieData={clearCookieData}>
+                <div className='header__nav' >   
                     <p >{userEmail}</p>
-                    <Link className='header__auth-text' to='/sign-in'onClick={signOut}>Выйти</Link>
+                    <Link className='header__auth-text' to='/sign-in' onClick={ clearCookieData }>Выйти</Link>
                 </div>
             </Header>
             <main className="main">
