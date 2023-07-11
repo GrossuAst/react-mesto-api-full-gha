@@ -105,14 +105,14 @@ export class Api {
     }
 
     // переключение лайка
-    changeLikeCardStatus(cardId, isLiked) {
-        return fetch(`${this._url}/cards/${cardId}/likes`, {
-            method: isLiked ? 'DELETE' : 'PUT',
-            credentials: 'include',
-            headers: this._headers
-        })
-        .then(this._checkResponse)
-    }
+    // changeLikeCardStatus(cardId, isLiked) {
+    //     return fetch(`${this._url}/cards/${cardId}/likes`, {
+    //         method: isLiked ? 'DELETE' : 'PUT',
+    //         credentials: 'include',
+    //         headers: this._headers
+    //     })
+    //     .then(this._checkResponse)
+    // }
 
 }
 

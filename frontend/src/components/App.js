@@ -150,14 +150,34 @@ function App() {
   // функция переключения лайка
   function handleCardLike(card) {
     // console.log(card)
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
-    api.changeLikeCardStatus(card._id, isLiked)
-    .then((newCard) => {
-      setCardsArray((state) => state.map((c) => c._id === card._id ? newCard : c));
-  })
-    .catch((err) => {
-      console.log(`ошибка ${err}`);
-    })
+    const isLiked = card.likes.some(i => toString(i._id) === toString(currentUser.data._id));
+    if(isLiked) {
+      api.deleteLike(card._id)
+        .then((newCard) => {
+          setCardsArray((state) => state.map((c) => c._id === card._id ? newCard : c));
+        })
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`);
+        })
+    } else {
+        api.putLike(card._id)
+          .then((newCard) => {
+            setCardsArray((state) =>
+              state.map((c) => (c._id === card._id ? newCard : c))
+            );
+          })
+          .catch((err) => {
+            console.log(`Ошибка: ${err}`);
+          });
+      }
+
+  //   api.changeLikeCardStatus(card._id, isLiked)
+  //   .then((newCard) => {
+  //     setCardsArray((state) => state.map((c) => c._id === card._id ? newCard : c));
+  // })
+  //   .catch((err) => {
+  //     console.log(`ошибка ${err}`);
+  //   })
   }
 
   // закрытие всех попапов

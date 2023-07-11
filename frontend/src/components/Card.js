@@ -28,7 +28,7 @@ function Card({card, onCardClick, onDeleteButtonClick, onCardLike, onCardDelete}
         <article className="card" key={card._id}>
             {isOwn && <button type="button"
                 aria-label="кнопка удаления карточки"
-                className="card__delete-button" 
+                className="card__delete-button"
                 onClick={handleDeleteClick}
                 // onClick={onDeleteButtonClick}
             />}
