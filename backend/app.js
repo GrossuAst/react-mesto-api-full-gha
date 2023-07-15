@@ -45,8 +45,8 @@ app.use(cookieParser());
 // подключение логгера запросов
 app.use(requestLogger);
 
-app.use(registerRouter);
-app.use(loginRouter);
+app.use('/api', registerRouter);
+app.use('/api', loginRouter);
 app.use('/api', auth);
 app.use('/api', userRoutes);
 app.use('/api', cardRoutes);
