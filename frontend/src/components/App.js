@@ -217,9 +217,9 @@ function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function handleLoggedIn() {
-    setLoggedIn(true);
-  }
+  // function handleLoggedIn() {
+  //   setLoggedIn(true);
+  // }
 
   function handleEmailChange(email) {
     setUserEmail(email);

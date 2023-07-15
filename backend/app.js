@@ -32,11 +32,12 @@ const cardRoutes = require('./routes/cards');
 const auth = require('./middlewares/auth');
 const errorsHandler = require('./middlewares/errorsHandler');
 
-const { PORT = 4000 } = process.env;
+const {
+  PORT = 4000,
+  // MONGO_URL = 'mongodb://127.0.0.1',
+} = process.env;
 
-mongoose.connect('mongodb://127.0.0.1/mestodb', {
-  useNewUrlParser: true,
-});
+mongoose.connect('mongodb://127.0.0.1/mestodb', { useNewUrlParser: true });
 
 app.use(bodyParser.json());
 app.use(cookieParser());
