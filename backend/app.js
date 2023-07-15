@@ -37,7 +37,7 @@ const {
   // MONGO_URL = 'mongodb://127.0.0.1',
 } = process.env;
 
-mongoose.connect('mongodb://127.0.0.1/mestodb', { useNewUrlParser: true });
+mongoose.connect('mongodb://127.0.0.1:27017/mestodb', { useNewUrlParser: true });
 
 app.use(bodyParser.json());
 app.use(cookieParser());
