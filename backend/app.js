@@ -12,7 +12,7 @@ const { errors } = require('celebrate');
 const cors = require('cors');
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'http://localhost:4000',
   credentials: true,
 }));
 
@@ -33,7 +33,7 @@ const auth = require('./middlewares/auth');
 const errorsHandler = require('./middlewares/errorsHandler');
 
 const {
-  PORT = 4000,
+  PORT = 3000,
   // MONGO_URL = 'mongodb://127.0.0.1',
 } = process.env;
 
