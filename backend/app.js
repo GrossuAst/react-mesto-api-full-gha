@@ -51,7 +51,7 @@ app.use('/api', auth);
 app.use('/api', userRoutes);
 app.use('/api', cardRoutes);
 app.use('/api', logoutRouter);
-app.use('/api', nonExistenRoutes);
+app.use(nonExistenRoutes);
 
 // логгер ошибок
 app.use(errorLogger);
