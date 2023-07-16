@@ -45,13 +45,13 @@ app.use(cookieParser());
 // подключение логгера запросов
 app.use(requestLogger);
 
-app.use('/api', registerRouter);
-app.use('/api', loginRouter);
-app.use('/api', auth);
-app.use('/api', userRoutes);
-app.use('/api', cardRoutes);
-app.use('/api', logoutRouter);
-app.use('/api', nonExistenRoutes);
+app.use(registerRouter);
+app.use(loginRouter);
+app.use(auth);
+app.use(userRoutes);
+app.use(cardRoutes);
+app.use(logoutRouter);
+app.use(nonExistenRoutes);
 
 // логгер ошибок
 app.use(errorLogger);
