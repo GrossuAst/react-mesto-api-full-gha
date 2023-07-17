@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const jwt = require('jsonwebtoken');
 // const authorization = require('../middlewares/auth');
+const crypto = require('crypto');
 
 const User = require('../models/user');
 const {
@@ -12,9 +13,16 @@ const {
   // notFoundStatus,
 } = require('../utils/constants');
 // const BadRequestError = require('../errors/bad-request-error');
-const secretKey = require('../utils/constants');
+// const secretKey = require('../utils/constants');
 const ConflictError = require('../errors/conflict-error');
 const NotFoundError = require('../errors/not-found-error');
+
+// генератор ключа для создания/чтения токена
+const createSecretKey = () => {
+  const secretKey = crypto.randomBytes(32).toString('base64');
+  return secretKey;
+};
+const secretKey = createSecretKey();
 
 // получение всех пользователей
 const getAllUsers = (req, res, next) => {
@@ -104,6 +112,7 @@ const updateAvatar = (req, res, next) => {
 };
 
 module.exports = {
+  secretKey,
   getAllUsers,
   getUserById,
   getInfoAboutMe,
