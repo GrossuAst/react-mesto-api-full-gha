@@ -149,8 +149,7 @@ function App() {
 
   // функция переключения лайка
   function handleCardLike(card) {
-    // console.log(card)
-    const isLiked = card.likes.some(i => toString(i._id) === toString(currentUser.data._id));
+    const isLiked = card.likes.some((i) => i === currentUser.data._id);
     if(isLiked) {
       api.deleteLike(card._id)
         .then((newCard) => {
