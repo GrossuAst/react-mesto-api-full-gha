@@ -12,6 +12,7 @@ const {
   // notFoundStatus,
 } = require('../utils/constants');
 // const BadRequestError = require('../errors/bad-request-error');
+const secretKey = require('../utils/constants');
 const ConflictError = require('../errors/conflict-error');
 const NotFoundError = require('../errors/not-found-error');
 
@@ -72,7 +73,7 @@ const login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'key', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, secretKey, { expiresIn: '7d' });
       res.status(statusOk).cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true, sameSite: true }).send({ jwt: token });
     })
     .catch(next);
