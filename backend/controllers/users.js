@@ -1,28 +1,18 @@
 /* eslint-disable object-curly-newline */
 const bcrypt = require('bcryptjs');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const jwt = require('jsonwebtoken');
-// const authorization = require('../middlewares/auth');
-const crypto = require('crypto');
+
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 const User = require('../models/user');
+
 const {
-  // notFoundMessage,
   statusOk,
   statusCreated,
-  // notFoundStatus,
 } = require('../utils/constants');
-// const BadRequestError = require('../errors/bad-request-error');
-// const secretKey = require('../utils/constants');
+
 const ConflictError = require('../errors/conflict-error');
 const NotFoundError = require('../errors/not-found-error');
-
-// генератор ключа для создания/чтения токена
-const createSecretKey = () => {
-  const secretKey = crypto.randomBytes(32).toString('base64');
-  return secretKey;
-};
-const secretKey = createSecretKey();
 
 // получение всех пользователей
 const getAllUsers = (req, res, next) => {
@@ -81,7 +71,7 @@ const login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, secretKey, { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
       res.status(statusOk).cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true, sameSite: true }).send({ jwt: token });
     })
     .catch(next);
@@ -112,7 +102,6 @@ const updateAvatar = (req, res, next) => {
 };
 
 module.exports = {
-  secretKey,
   getAllUsers,
   getUserById,
   getInfoAboutMe,
