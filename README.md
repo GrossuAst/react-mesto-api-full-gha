@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.73.86
+IP 158.160.73.86
 
 Frontend https://grossuast.mesto.nomoredomains.xyz
 
