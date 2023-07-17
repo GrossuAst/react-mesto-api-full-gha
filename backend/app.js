@@ -45,6 +45,13 @@ app.use(cookieParser());
 // подключение логгера запросов
 app.use(requestLogger);
 
+// удалить после ревью
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.use(registerRouter);
 app.use(loginRouter);
 app.use(auth);
