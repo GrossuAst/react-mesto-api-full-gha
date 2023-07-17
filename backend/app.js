@@ -12,7 +12,7 @@ const { errors } = require('celebrate');
 const cors = require('cors');
 
 app.use(cors({
-  origin: 'http://grossuast.mesto.nomoredomains.xyz',
+  origin: 'https://grossuast.mesto.nomoredomains.xyz',
   credentials: true,
 }));
 
