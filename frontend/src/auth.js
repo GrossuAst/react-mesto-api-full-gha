@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.grossuast.mesto.nomoredomains.xyz/api';
+export const BASE_URL = 'https://api.grossuast.mesto.nomoredomains.xyz';
 
 export function register(password, email) {
     return fetch(`${BASE_URL}/signup`, {
