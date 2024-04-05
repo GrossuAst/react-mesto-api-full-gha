@@ -16,7 +16,8 @@ const cors = require('cors');
 
 app.use(cors({
   origin: 'https://grossuast.mesto.nomoredomains.xyz',
-  credentials: true,
+  // origin: 'http://localhost:3000',
+  credentials: true
 }));
 
 // импорт логгеров
@@ -36,7 +37,7 @@ const auth = require('./middlewares/auth');
 const errorsHandler = require('./middlewares/errorsHandler');
 
 const {
-  PORT = 3000,
+  PORT = 4000,
   // MONGO_URL = 'mongodb://127.0.0.1',
 } = process.env;
 
