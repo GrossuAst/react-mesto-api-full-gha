@@ -37,7 +37,7 @@ const auth = require('./middlewares/auth');
 const errorsHandler = require('./middlewares/errorsHandler');
 
 const {
-  PORT = 4000,
+  PORT = 3001,
   // MONGO_URL = 'mongodb://127.0.0.1',
 } = process.env;
 
